@@ -10,4 +10,4 @@ if [[ $height -gt 30 ]]
 	else heightfit=$height
 fi
 
-wmctrl -l | sed 's/ 0/0/' | cut -d " " -f 4- | nl -n ln | sed 's/     / - /' | cut -c 1-4,6- | dmenu -b -i -p "$date" -l $heightfit | cut -c 5- | xargs wmctrl -a
+wmctrl -l | sed 's/  / /' | cut -d " " -f 4- | nl -n ln | sed 's/     / - /' | cut -c 1-4,6- | dmenu -b -i -p "$date" -l $heightfit | cut -c 5- | xargs wmctrl -a
