@@ -1,12 +1,12 @@
 dswitcher
 =========
 
-Dmenu-based window switcher for EWHM-compliant X11 window managers. It presents a list of all windows, regardless of their workspace and whether or not they're minimized, in a vertical dmenu instance. You can filter by typing in any part of the window title, but in addition, each window is assigned a number, which is prepended in the list. Simply typing that number works as well. This feature was taken from Musca and is similar to Ratpoison/Stumpwm.
+Dmenu-based window switcher for EWMH-compliant X11 window managers. It presents a list of all windows, regardless of their workspace and whether or not they're minimized, in a vertical dmenu instance. You can filter by typing in any part of the window title, but in addition, each window is assigned a number, which is prepended in the list. Simply typing that number works as well. This feature was taken from Musca and is similar to Ratpoison/Stumpwm.
 
 ### Dependencies
 - dmenu;
 - wmctrl;
-- an EWHM-compliant X11 window manager.
+- an EWMH-compliant X11 window manager.
 
 ### Installation
 - Resolve the dependencies. In Debian, this means:
