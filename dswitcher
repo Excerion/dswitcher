@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Date format, for use as the prompt.
 date=$(date +"%a %d. %b %R")
