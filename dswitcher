@@ -1,5 +1,32 @@
 #!/bin/bash
 
+usage() {
+    echo "Options:
+    -f | --font     <font>      Sets the font
+    -h | --help                 Prints this help message"
+    exit $1
+}
+
+unset dmenu_args
+while [[ $# > 0 ]]; do
+    opt="$1"
+    shift
+
+    case $opt in
+        -f|--font)
+            [[ $# > 0 ]] || usage 1
+            dmenu_args=( -fn "$1" "${dmenu_args[@]}" )
+            shift
+            ;;
+        -h|--help)
+            usage 0
+            ;;
+        *)
+            usage 1
+            ;;
+    esac
+done
+
 # Date format, for use as the prompt.
 date=$(date +"%a %d. %b %R")
 
@@ -10,6 +37,8 @@ if [[ $height -gt 30 ]]
 	else heightfit=$height
 fi
 
-num=$(wmctrl -l | sed 's/  / /' | cut -d " " -f 4- | nl -w 3 -n rn | sed -r 's/^([ 0-9]+)[ \t]*(.*)$/\1 - \2/' | dmenu -b -i -p "$date" -l $heightfit | cut -d '-' -f -1)
+dmenu_args=( -b -i -p "$date" -l "$heightfit" "${dmenu_args[@]}" )
+
+num=$(wmctrl -l | sed 's/  / /' | cut -d " " -f 4- | nl -w 3 -n rn | sed -r 's/^([ 0-9]+)[ \t]*(.*)$/\1 - \2/' | dmenu "${dmenu_args[@]}" | cut -d '-' -f -1)
 [[ -z "$num" ]] && exit
 wmctrl -l | sed -n "$num p" | cut -c -10 | xargs wmctrl -i -a
